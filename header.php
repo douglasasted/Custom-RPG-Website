@@ -26,11 +26,11 @@
             {
                 if ($_SESSION["username"] == "Douglas_Asted") 
                 {
-                    echo "<div class='text-center'>< Logado como <a href='#'>", $_SESSION["username"], " (GM)</a> ></div>";
+                    echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], " (GM)</a> ></div>";
                 }
                 else 
                 {
-                    echo "<div class='text-center'>< Logado como <a href='#'>", $_SESSION["username"], "</a> ></div>";
+                    echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], "</a> ></div>";
                 }
             } 
             else 

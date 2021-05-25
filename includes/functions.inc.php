@@ -1,7 +1,6 @@
 <?php
 
-// Signup Functions
-
+// Funções de Criação de Conta
 function nameExist($conn, $name, $email)
 {
     $sql = "SELECT * FROM users WHERE usersName = ? OR usersEmail = ?;";
@@ -52,7 +51,7 @@ function createUser($conn, $name, $email, $pwd)
     exit();
 }
 
-// Login Functions
+// Funções de Login
 function loginUser($conn, $name, $pwd) 
 {
     $nameExist = nameExist($conn, $name, $name);
@@ -80,4 +79,30 @@ function loginUser($conn, $name, $pwd)
         header("location: ../index.php");
         exit();
     }
+}
+
+// Funções para o RPG
+function Roll($value) 
+{
+    $quality = "Fracassso";
+    $rng = random_int(1, 20);
+
+    if ($rng == 1) 
+    {
+        $quality = "Desastre";
+    }
+    else if ($rng >= 20 - $value / 4)
+    {
+        $quality = "Extremo";
+    }
+    else if ($rng >= 20 - $value / 2) 
+    {
+        $quality = "Bom";
+    }
+    else if ($rng >= 20 - $value) 
+    {
+        $quality = "Normal";
+    }
+
+    return "(" . $rng . ") " . $quality;
 }

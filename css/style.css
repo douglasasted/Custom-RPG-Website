@@ -3,8 +3,14 @@ body {
 }
 
 a {
-    color: rgb(161, 0, 0);
+    color: rgb(161, 0, 0) !important;
     text-decoration: none;
+}
+
+button {
+    color: rgb(161, 0, 0) !important;
+    text-decoration: none;
+
 }
 
 a:hover:not(.header) {
