@@ -100,7 +100,7 @@ function Roll($value)
             $quality = "Milagre";
         }
     }
-    else if ($rng > 20 - floor($value / 2)) 
+    else if ($rng >= 20 - floor($value / 2)) 
     {
         $quality = "Bom";
     }

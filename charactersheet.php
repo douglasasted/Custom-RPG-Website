@@ -13,6 +13,11 @@
     $sql = "SELECT * FROM characters WHERE charactersId = ". $_GET['id'];
     $result = $conn->query($sql);
     $sheet = $result->fetch_assoc();
+
+    if ($sheet['charactersPlayer'] !== $_SESSION['username'] && $_SESSION['username'] != "Douglas_Asted") 
+    {
+        header("location: index.php");
+    }
 ?>
 
 <div class="row">

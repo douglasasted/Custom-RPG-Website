@@ -1,4 +1,3 @@
-
 function ValueChanged (val) 
 {
     val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
