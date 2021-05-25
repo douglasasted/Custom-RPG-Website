@@ -88,14 +88,19 @@ function Roll($value)
     $rng = random_int(1, 20);
 
     if ($rng == 1) 
-    {
+    {   
         $quality = "Desastre";
     }
-    else if ($rng >= 20 - $value / 4)
+    else if ($rng > 20 - floor($value / 4))
     {
         $quality = "Extremo";
+
+        if ($rng == 20) 
+        {
+            $quality = "Milagre";
+        }
     }
-    else if ($rng >= 20 - $value / 2) 
+    else if ($rng > 20 - floor($value / 2)) 
     {
         $quality = "Bom";
     }

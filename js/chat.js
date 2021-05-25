@@ -18,7 +18,7 @@ setInterval(() =>
     xhr.send();
 }, 500);
 
-function Roll (_roll, name) 
+function Roll (_roll) 
 {
     console.log(_roll);
     var xhr = new XMLHttpRequest();

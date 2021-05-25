@@ -4,7 +4,8 @@
 
 <div class="row">
     <div class="col-4">
-        Ficha do <a href="charactersheet.php">José Murilo</a>
+        Ficha do <a href="charactersheet.php?id=1">José Murilo</a><br>
+        Ficha do <a href="charactersheet.php?id=2">Pedro Lopes</a>
     </div>
     <div class="col-5">
     </div>

@@ -7,23 +7,32 @@ $data = $data->roll;
 
 if($data !== null) 
 {
+    include_once('dbh.inc.php');
+
     $roll = explode(" ", $data);
+    
+    $sql = "SELECT * FROM characters WHERE charactersId = ". $roll[1];
+    $result = $conn->query($sql);
+    $sheet = $result->fetch_assoc();
+
     $posRolls = array(
-        "FOR" => "Força",
-        "DEX" => "Destreza",
-        "CON" => "Constituição",
-        "TAM" => "Tamanho",
-        "POD" => "Vontade",
-        "CAR" => "Carisma",
-        "INT" => "Inteligência",
-        "EDU" => "Educação",
-        "SOR" => "Sorte"
+        "For" => "Força",
+        "Dex" => "Destreza",
+        "Con" => "Constituição",
+        "Tam" => "Tamanho",
+        "Pod" => "Vontade",
+        "Car" => "Carisma",
+        "Int" => "Inteligência",
+        "Edu" => "Educação",
+        "Sor" => "Sorte"
     );
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    $msg = $posRolls[$roll[0]] . " " . Roll($roll[1]);
+    $msg = explode(' ', $sheet['charactersName'])[0] . " : " . $posRolls[$roll[0]] . " " . Roll($sheet["characters" . $roll[0]]) . ".";
+
+    echo $sheet["characters" . $roll[0]];
 
     $name = mysqli_real_escape_string($conn, $_SESSION['username']);
     $msg = mysqli_real_escape_string($conn, $msg);
@@ -43,6 +52,5 @@ if($data !== null)
 }
 else 
 {
-    echo "problema";
     header("location: ../login.php");
 }
