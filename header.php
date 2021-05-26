@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if (!isset($_SESSION["userid"])) 
+    {
+        header("location: login.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,22 +26,14 @@
                                    border-width:medium; 
                                    border-color: grey;">
         <br>
-        <?php 
-            if (isset($_SESSION["userid"])) 
+        <?php
+            if ($_SESSION["username"] == "Douglas_Asted") 
             {
-                if ($_SESSION["username"] == "Douglas_Asted") 
-                {
-                    echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], " (GM)</a> ></div>";
-                }
-                else 
-                {
-                    echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], "</a> ></div>";
-                }
-            } 
+                echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], " (GM)</a> ></div>";
+            }
             else 
             {
-                header("location: login.php");
-                exit();
+                echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], "</a> ></div>";
             }
         ?>
         <div class="text-center">( <a href="includes/logout.inc.php" style="color: rgb(0, 0, 161);"> Deslogar </a> )</div>

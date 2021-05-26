@@ -14,7 +14,7 @@
     $result = $conn->query($sql);
     $sheet = $result->fetch_assoc();
 
-    if ($sheet['charactersPlayer'] !== $_SESSION['username'] && $_SESSION['username'] != "Douglas_Asted") 
+    if ($sheet['player'] !== $_SESSION['username'] && $_SESSION['username'] != "Douglas_Asted") 
     {
         header("location: index.php");
     }
@@ -23,7 +23,7 @@
 <div class="row">
     <div class="col-3">
         <h1 class="h6 text-center">Nivel 1<h1>
-        <h1 class="display-6 text-center"><?php echo $sheet['charactersName']; ?><h1>
+        <h1 class="display-6 text-center"><?php echo $sheet['name']; ?><h1>
         <d1 class="row">
             <!--Status-->
 
@@ -61,7 +61,7 @@
 
             <!--Roleplay-->
             <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Jogador</dt>
-            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;"><?php echo $sheet['charactersPlayer']; ?></dd>
+            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;"><?php echo $sheet['player']; ?></dd>
 
             <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Arquetipo</dt>
             <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">Investigador</dd>
@@ -155,10 +155,10 @@
                                 <button onclick="Roll('For <?php echo $sheet['charactersId']?>');">Força</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersFor'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charFor'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'FOR', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'FOR', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                         <tr>
@@ -166,10 +166,10 @@
                                 <button onclick="Roll('Dex <?php echo $sheet['charactersId']?>');">Destreza</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersDex'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charDex'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'DEX', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'DEX', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                         <tr>
@@ -177,10 +177,10 @@
                                 <button onclick="Roll('Con <?php echo $sheet['charactersId']?>');">Constituição</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersCon'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charCon'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'CON', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'CON', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                     </tbody>
@@ -195,10 +195,10 @@
                                 <button onclick="Roll('Tam <?php echo $sheet['charactersId']?>');">Tamanho</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersTam'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charTam'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'TAM', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'TAM', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                         <tr>
@@ -206,10 +206,10 @@
                                 <button onclick="Roll('Pod <?php echo $sheet['charactersId']?>');">Vontade</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersPod'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charPod'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'POD', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'POD', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                         <tr>
@@ -217,10 +217,10 @@
                                 <button onclick="Roll('Car <?php echo $sheet['charactersId']?>');">Carisma</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersCar'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charCar'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'CAR', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'CAR', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                     </tbody>
@@ -235,10 +235,10 @@
                                 <button onclick="Roll('Int <?php echo $sheet['charactersId']?>');">Inteligência</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersInt'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charInt'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'INT', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'INT', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                         <tr>
@@ -246,10 +246,10 @@
                                 <button onclick="Roll('Edu <?php echo $sheet['charactersId']?>');">Educação</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersEdu'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charEdu'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'EDU', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'EDU', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                         <tr>
@@ -257,10 +257,10 @@
                                 <button onclick="Roll('Sor <?php echo $sheet['charactersId']?>');">Sorte</button>
                             </td>
                             <th>
-                                <input type="text" value="<?php echo $sheet['charactersSor'] ?>" 
+                                <input type="text" value="<?php echo $sheet['charSor'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(this.value);" 
-                                       onblur="this.value = FocusChanged(<?php echo $sheet['charactersId']?>, 'SOR', this.value);" />
+                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'SOR', this.value);" 
+                                       onblur="this.value = FocusChanged(this.value);" />
                             </th>
                         </tr>
                     </tbody>

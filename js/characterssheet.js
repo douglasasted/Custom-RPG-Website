@@ -1,21 +1,11 @@
-function ValueChanged (val) 
+function ValueChanged (_id, _valname, _val) 
 {
-    val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+    _val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
     
-    if (parseInt(val) > 20) 
-        val = '20';
-    else if (parseInt(val) == 0) 
-        val = '1';
-    
-    return val;
-}
-
-function FocusChanged (_id, _valname, _val)
-{
-    if (_val == '') 
-    {
+    if (parseInt(_val) > 20) 
+        _val = '20';
+    else if (parseInt(_val) == 0) 
         _val = '1';
-    }
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "includes/characterssheet.inc.php", true);
@@ -34,6 +24,16 @@ function FocusChanged (_id, _valname, _val)
         valname : _valname,
         val : _val
     }));
+    
+    return _val;
+}
+
+function FocusChanged (_val)
+{
+    if (_val == '') 
+    {
+        _val = '1';
+    }
 
     return _val;
 }

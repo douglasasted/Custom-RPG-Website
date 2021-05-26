@@ -1,5 +1,9 @@
 const chatMessages = document.querySelector(".chat");
 
+window.onload = function() {    
+    UpdateChat();
+}
+
 setInterval(() =>
 {
     UpdateChat();

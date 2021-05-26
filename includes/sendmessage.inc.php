@@ -30,9 +30,9 @@ if($data !== null)
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    $msg = explode(' ', $sheet['charactersName'])[0] . " : " . $posRolls[$roll[0]] . " " . Roll($sheet["characters" . $roll[0]]) . ".";
+    $msg = explode(' ', $sheet['name'])[0] . " : " . $posRolls[$roll[0]] . " " . Roll($sheet["char" . $roll[0]]) . ".";
 
-    echo $sheet["characters" . $roll[0]];
+    echo $sheet["char" . $roll[0]];
 
     $name = mysqli_real_escape_string($conn, $_SESSION['username']);
     $msg = mysqli_real_escape_string($conn, $msg);

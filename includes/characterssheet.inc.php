@@ -11,7 +11,7 @@ if($data !== null)
     $valname = $data->valname;
     $value = $data->val;
 
-    $sql = "UPDATE characters SET characters" . $valname . " = " . $value . " WHERE charactersId = ". $id;
+    $sql = "UPDATE characters SET char" . $valname . " = " . $value . " WHERE charactersId = ". $id;
     mysqli_query($conn, $sql);
 }
 else 

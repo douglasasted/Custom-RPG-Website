@@ -109,5 +109,5 @@ function Roll($value)
         $quality = "Normal";
     }
 
-    return "(" . $rng . ") " . $quality;
+    return $rng . " (". $value . ") " . $quality;
 }
