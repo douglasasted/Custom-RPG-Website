@@ -103,7 +103,7 @@ function Roll($value)
             $quality = "Milagre";
         }
     }
-    else if ($rng >= 20 - floor($value / 2)) 
+    else if ($rng > 20 - floor($value / 2)) 
     {
         $quality = "Bom";
     }
@@ -126,4 +126,55 @@ function RollExp($value)
     }
 
     return $rng . " (". $value . ") " . $quality;
+}
+
+function RollGen($value) 
+{
+    $value = explode(' ', $value);
+    $total = 0;
+    $msg = "";
+    $lastchar = '';
+
+    foreach ($value as $val) 
+    {
+        if (is_numeric($val)) 
+        {
+            if ($lastchar == '-')
+            {
+                $msg = $msg . " - " . $val;
+                $total -= (int) $val;
+            }
+            else 
+            {
+                $msg = $msg . " + " . $val;
+                $total += (int) $val;   
+            }
+        }
+        else if ($val == '+') 
+        {
+            $lastchar = '+';
+        }
+        else if ($val == '-')
+        {
+            $lastchar = '-';
+        }
+        else 
+        {
+            $roll = explode('d', $val);
+            $rollmsg = "";
+            $totalroll = 0;
+            
+            for ($i=0; $i < $roll[0]; $i++) 
+            {
+                $rng = random_int(1, $roll[1]);
+                $rollmsg = $rollmsg . " + " . $rng;
+                $totalroll += $rng;
+            }
+
+            $msg = $msg . " + " . $totalroll . " (  " . substr($rollmsg, 2) . " )";
+            $total += $totalroll;
+        }
+    }
+
+    return $total . ' = ' . substr($msg, 2);
 }

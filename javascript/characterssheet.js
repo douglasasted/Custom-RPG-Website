@@ -1,6 +1,6 @@
 function ValueChanged (_id, _valname, _val, _max) 
 {
-    if (_max !== 'text')
+    if (_max !== 'text' && _max !== 'gun')
     {
         console.log('text');
         _val = _val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -44,4 +44,24 @@ function FocusChanged (_val, _valname)
     }
 
     return _val;
+}
+
+function NewItem (_id, _type) 
+{
+    console.log(_id);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "includes/insertitem.inc.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() 
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            // Response
+            console.log(this.responseText);
+        }
+    };
+    xhr.send(JSON.stringify({
+        id : _id,
+        type : _type
+    }));
 }

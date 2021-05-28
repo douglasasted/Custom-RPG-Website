@@ -16,6 +16,10 @@ if($data !== null)
     {
         $sql = "UPDATE characters SET " . $valname . " = '" . $value . "' WHERE charactersId = ". $id;
     }
+    else if ($max == "gun") 
+    {
+        $sql = "UPDATE guns SET " . $valname . " = '" . $value . "' WHERE gunsId = ". $id;
+    }
     else
     {
         $sql = "UPDATE characters SET " . $valname . " = " . $value . " WHERE charactersId = ". $id;

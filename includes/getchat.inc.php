@@ -18,15 +18,18 @@ for ($i = count($rows)-1; $i >= 0; $i--)
     
     $numbers = [];
     preg_match_all('!\d+!', $rows[$i][2], $numbers);
-    if ($numbers[0][0] === '20') 
-        $color = 'green';
-    else if ($numbers[0][0] === '1') 
-        $color = 'rgb(161, 0, 0)';
-    else
-        $color = 'black';
 
     if ($sub === "EXP")
         $color = 'black';
+    else
+    {
+        if ($numbers[0][0] === '20') 
+            $color = 'green';
+        else if ($numbers[0][0] === '1') 
+            $color = 'rgb(161, 0, 0)';
+        else
+            $color = 'black';
+    }
 
     if ($i == 0) 
     {

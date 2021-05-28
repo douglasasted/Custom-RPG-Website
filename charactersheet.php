@@ -126,41 +126,46 @@
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquise Pericia">
             
             <ul id="myUL">
-                <tbody style="font-size: 16px;">
-                    <?php
-                        $sheetkeys = array_keys($sheet);
-                        $n = 0;
+                <?php
+                    $sheetkeys = array_keys($sheet);
+                    $n = 0;
 
-                        foreach ($sheetkeys as $key) 
+                    foreach ($sheetkeys as $key) 
+                    {
+                        if (substr($key, 0, 4) == "char") 
                         {
-                            if (substr($key, 0, 4) == "char") 
+                            $n += 1;
+                            if ($n > 10) 
                             {
-                                $n += 1;
-                                if ($n > 10) 
+                                $name = substr($key, 4);
+                                $check = "chec" . $name;
+                                $checkbox = "";
+                                if ($sheet[$check] == 1)
                                 {
-                                    $name = substr($key, 4);
-                                    if ($name == "ArteMarciais") $name = "Artes Marciais";
-                                    if ($name == "PrimeirosSocorros") $name = "Prim. Socorros";
-                                    echo " 
-                                        <li>
-                                            <tr>
-                                                <input type='checkbox'/>
-                                                <td> 
-                                                    <input type='text' value=" . $sheet[$key] . " 
-                                                        style='width: 25px; outline: none; font-weight: bold;' 
-                                                        oninput='this.value = ValueChanged(" . $sheet['charactersId'] . ", \"" . $key . "\", this.value, \"20\");' 
-                                                        onblur='this.value = FocusChanged(this.value, \"char\");' />
-                                                </td>
-                                                <th>
-                                                    <button onclick='Roll(\"" . $key . " " . $sheet['charactersId'] . "\");'>" . $name ."</button>
-                                                </th>
-                                            </tr>
-                                        </li>";
+                                    $checkbox = "checked";
                                 }
+
+                                if ($name == "ArteMarciais") $name = "Artes Marciais";
+                                if ($name == "PrimeirosSocorros") $name = "Prim. Socorros";
+                                echo " 
+                                    <li>
+                                        <tr>
+                                            <input type='checkbox' " . $checkbox . " onclick='this.value = ValueChanged(" . $sheet['charactersId'] . ", \"" . $check . "\", this.checked, \"text\");'/>
+                                            <td> 
+                                                <input type='text' value=". $sheet[$key] . " 
+                                                    style='width: 25px; outline: none; font-weight: bold;' 
+                                                    oninput='this.checked = ValueChanged(" . $sheet['charactersId'] . ", \"" . $key . "\", this.value, \"20\");' 
+                                                    onblur='this.checked = FocusChanged(this.value, \"char\");' />
+                                            </td>
+                                            <th>
+                                                <button onclick='Roll(\"" . $key . " " . $sheet['charactersId'] . "\");'><a href='#'>" . $name ."</a></button>
+                                            </th>
+                                        </tr>
+                                    </li>";
                             }
                         }
-                    ?>
-                </tbody>
+                    }
+                ?>
             </ul>
         </d1>
         
@@ -368,56 +373,49 @@
                         <tr>
                             <th scope="col">Nome</th>
                             <th scope="col">Dano</th>
-                            <th scope="col">Estilo</th>
                             <th scope="col">Pericia</th>
                             <th scope="col">Munição</th>
                         </tr>
                     </thead>
                     <tbody style="border: white;">
-                        <tr>
-                            <th>Briga</th>
-                            <td>1d3 + bd</td>
-                            <td>Pessoal</td>
-                            <td><a href="#">Artes Marciais</a></td>
-                            <td>---</td>
-                        </tr>
-                        <tr>
-                            <th>P90</th>
-                            <td>1d10</td>
-                            <td>Tripple ou Burst</td>
-                            <td><a href="#">Submetralhadora</a></td>
-                            <td>50/50</td>
-                        </tr>
-                        <tr>
-                            <th>Corrente</th>
-                            <td>1d4 + bd</td>
-                            <td>Pessoal</td>
-                            <td><a href="#">Artes Marciais</a></td>
-                            <td>---</td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
-                    </tbody>
+                        <?php
+                            $sql = "SELECT * FROM guns WHERE charactersId = ". $_GET['id'];
+                            $guns = $conn->query($sql);
+    
+                            while ($gun = $guns -> fetch_array()) 
+                            {
+                                echo " 
+                                    <tr>
+                                        <th> 
+                                            <input type='text' value='" . $gun['name'] ."' 
+                                                style='width: 75px; outline: none;' 
+                                                oninput='this.value = ValueChanged(" . $gun['gunsId'] . ", \"name\", this.value, \"gun\");' 
+                                                onblur='this.value = FocusChanged(this.value, \"text\");' />
+                                        </th>
+                                        <td> 
+                                            <input type='text' value='" . $gun['damage'] ."' 
+                                                style='width: 45px; outline: none;' 
+                                                oninput='this.value = ValueChanged(" . $gun['gunsId'] . ", \"damage\", this.value, \"gun\");' 
+                                                onblur='this.value = FocusChanged(this.value, \"text\");' />
+                                        </td>
+                                        <td> 
+                                            <input type='text' value='" . $gun['skill'] ."' 
+                                                style='width: 125px; outline: none;' 
+                                                oninput='this.value = ValueChanged(" . $gun['gunsId'] . ", \"skill\", this.value, \"gun\");' 
+                                                onblur='this.value = FocusChanged(this.value, \"text\");' />
+                                        </td>
+                                        <td> 
+                                            <input type='text' value='" . $gun['ammo'] ."' 
+                                                style='width: 65px; outline: none;' 
+                                                oninput='this.value = ValueChanged(" . $gun['gunsId'] . ", \"ammo\", this.value, \"gun\");' 
+                                                onblur='this.value = FocusChanged(this.value, \"text\");' />
+                                        </td>
+                                    </tr>";
+                            }
+                        ?>
                     </table>
+                    </tbody>
+                    <button onclick="NewItem(<?php echo $sheet['charactersId'] ?>, ''); window.location.reload();">Adicionar</button>
             </div>
         </div>
 
@@ -576,13 +574,12 @@
         </p>
         <div class="collapse" id="inventario">
             <div class="card card-body">
-                <div class="row" style="margin-left: 100px;">
-                    <div class="col-4">
-                        <strong> Peso </strong> 3 / 20
-                    </div>
-                    <div class="col-6">
-                        <strong> Dinheiro </strong> 0.00 $
-                    </div>
+                <div class="col-6">
+                    <strong> Dinheiro </strong>  $
+                        <input type="text" value="<?php echo $sheet['money'] ?>" 
+                            style="width: 100px; outline: none;" 
+                            oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'money', this.value, '10000');" 
+                            onblur="this.value = FocusChanged(this.value, 'text');" />
                 </div>
                 
                 <br>
@@ -591,113 +588,32 @@
                     <thead>
                         <tr>
                             <th scope="col">Nome</th>
-                            <th scope="col">Peso</th>
                             <th scope="col" style="width: 1000px;">Descrição</th>
                         </tr>
                     </thead>
                     <tbody style="border: white;">
                         <tr>
-                            <th>Crowbar</th>
-                            <td>3</td>
-                            <td><div style="text-align: justify;">Uma crowbar.</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
-                        </tr>
-                        <tr>
-                            <th>---</th>
-                            <td>---</td>
-                            <td><div style="text-align: justify;">---</div></td>
+                            <?php
+                                $sql = "SELECT * FROM inventory WHERE charactersId = ". $_GET['id'];
+                                $itens = $conn->query($sql);
+
+                                while ($item = $itens -> fetch_array()) 
+                                {
+                                    echo "
+                                    <tr>
+                                        <th>". $item['name']. "</th>
+                                        <td>
+                                            <textarea type='text' style='margin-left: 10px; border-color: lightgrey; background-color: white; width: 400px; height: 50px; resize: none;' 
+                                            onchange='this.value = ValueChanged(". $item['inventoryId']. ", \"description\", this.value, \"text\");' > ". $item['description'] . "
+                                            </textarea>
+                                        </td>
+                                    </tr>";
+                                }
+                            ?>
                         </tr>
                     </tbody>
                 </table>
+                <button onclick="NewItem(<?php echo $sheet['charactersId'] ?>, 'inventory'); window.location.reload();">Adicionar</button>
             </div>
             
             
@@ -769,8 +685,8 @@ $(".btn-warning").click(function() {
 });
 </script>
 
-<script src="js/filter.js"></script>
-<script src="js/characterssheet.js"></script>
+<script src="javascript/filter.js"></script>
+<script src="javascript/characterssheet.js"></script>
 <?php
     include_once 'footer.php';
 ?>

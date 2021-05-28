@@ -45,3 +45,22 @@ function UpdateChat()
     }
     xhr.send();
 }
+
+function SendMessage(_message) 
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "includes/sendmessage.inc.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() 
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            // Response
+            console.log(this.responseText);
+        }
+    };
+    xhr.send(JSON.stringify({
+        roll : "message",
+        message : _message
+    }));
+}

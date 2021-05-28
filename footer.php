@@ -5,7 +5,11 @@
                     <div onload="UpdateChat();" class="chat">
 
                     </div>
-                    <script src="js/chat.js"></script>
+                    <input id="message"></input>
+                    <button style="width: 60px" onclick="
+                        SendMessage(document.getElementById('message').value);
+                        document.getElementById('message').value = '';"> Roll</button>
+                    <script src="javascript/chat.js"></script>
                 </div>
                 <br>
             </div>
