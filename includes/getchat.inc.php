@@ -13,6 +13,9 @@ while ($row = $result -> fetch_array())
 
 for ($i = count($rows)-1; $i >= 0; $i--) 
 {
+    $sub = substr($rows[$i][2], 0, 3);
+    $msg = substr($rows[$i][2], 3);
+    
     $numbers = [];
     preg_match_all('!\d+!', $rows[$i][2], $numbers);
     if ($numbers[0][0] === '20') 
@@ -22,6 +25,8 @@ for ($i = count($rows)-1; $i >= 0; $i--)
     else
         $color = 'black';
 
+    if ($sub === "EXP")
+        $color = 'black';
 
     if ($i == 0) 
     {
@@ -31,11 +36,11 @@ for ($i = count($rows)-1; $i >= 0; $i--)
                 <strong style='font-size: 15px'>", 
                     $rows[$i][1], 
                 "</strong> 
-                <span class='small'> ", 
+                <span class='small'>", 
                     substr($rows[$i][3], 2, -3), 
                 "</span>
-                <p style ='margin-bottom: 0px; font-size: 14px; font-style: justify; color: ", $color,";'>",
-                    $rows[$i][2],
+                <p style ='margin-bottom: 0px; height: 40px; font-size: 14px; font-style: justify; color: ", $color,";'>",
+                    $msg,
                 "</p>
                 <br>
             </div>
@@ -43,9 +48,16 @@ for ($i = count($rows)-1; $i >= 0; $i--)
     }
     else
     {
-        echo "<hr><strong style='font-size: 15px'>", $rows[$i][1], "</strong> <span class='small'> ", substr($rows[$i][3], 2, -3), "</span>
-            <p style ='margin-bottom: 0px; font-size: 14px; font-style: justify; color: ", $color,";'>",
-                $rows[$i][2],
+        echo "
+            <hr style='margin-bottom: 7px; margin-top: 8px;'>
+            <strong style='font-size: 14px'>", 
+                $rows[$i][1], 
+            "</strong> 
+            <span class='small'> ", 
+                substr($rows[$i][3], 2, -3), 
+            "</span>
+            <p style ='margin-bottom: 0px; font-size: 14px; height: 40px; font-style: justify; color: ", $color,";'>",
+                $msg,
             "</p>";
     }
 }

@@ -89,7 +89,10 @@ function Roll($value)
 
     if ($rng == 1) 
     {   
-        $quality = "Desastre";
+        if ($value < 20) 
+        {
+            $quality = "Desastre";
+        }
     }
     else if ($rng > 20 - floor($value / 4))
     {
@@ -107,6 +110,19 @@ function Roll($value)
     else if ($rng >= 20 - $value) 
     {
         $quality = "Normal";
+    }
+
+    return $rng . " (". $value . ") " . $quality;
+}
+
+function RollExp($value) 
+{
+    $quality = "Fracasso";
+    $rng = random_int(1, 100);
+
+    if ($rng <= $value) 
+    {
+        $quality = "Sucesso";
     }
 
     return $rng . " (". $value . ") " . $quality;

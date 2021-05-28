@@ -10,8 +10,17 @@ if($data !== null)
 
     $valname = $data->valname;
     $value = $data->val;
+    $max = $data->max;
 
-    $sql = "UPDATE characters SET char" . $valname . " = " . $value . " WHERE charactersId = ". $id;
+    if ($max == "text") 
+    {
+        $sql = "UPDATE characters SET " . $valname . " = '" . $value . "' WHERE charactersId = ". $id;
+    }
+    else
+    {
+        $sql = "UPDATE characters SET " . $valname . " = " . $value . " WHERE charactersId = ". $id;
+    }
+    
     mysqli_query($conn, $sql);
 }
 else 

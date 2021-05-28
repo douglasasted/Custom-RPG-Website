@@ -21,41 +21,54 @@
 ?>
 
 <div class="row">
-    <div class="col-3">
-        <h1 class="h6 text-center">Nivel 1<h1>
-        <h1 class="display-6 text-center"><?php echo $sheet['name']; ?><h1>
+    <div class="col-4">
+        <br>
+        <h1 class="h6 text-center" style="margin-bottom: 0px;">
+            Nivel 
+            <input type="text" value="<?php echo $sheet['level'] ?>"
+                    style="width: 25px; height: 25  px; outline: none; font-weight: normal;" 
+                    placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'level', this.value, 20);" 
+                    onblur="this.value = FocusChanged(this.value, 'text');" />
+        <h1>
+        <h1 class="display-6 text-center" style="margin-bottom: 0px !important; margin-top: 0px;">
+                <input type="text" value="<?php echo $sheet['name'] ?>"
+                       style="width: 500px; height: 60px; outline: none; font-weight: normal;" 
+                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'name', this.value, 'text');" 
+                       onblur="this.value = FocusChanged(this.value, 'text');" />
+        <h1>
         <d1 class="row">
             <!--Status-->
-
-            <dt class="col-sm-4 h6">Vida</dt>
-            <dd class="col-sm-8">
-                <div class="progress" style="background-color: rgb(37, 37, 37);">
-                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="9" style="width:100%">
-                    9/9
-                    </div>
-                </div>
+            <dt class="col-sm-4 h6" style="color: white; background-color: #E60101; border-bottom: 2px solid black; border-top: 2px solid black;">Vida</dt>
+            <dd class="col-sm-8 text-center" style="border-right: 2px solid black; color: white; font-size: 18px; background-color: #E60101; border-bottom: 2px solid black; border-top: 2px solid black;">
+                <input type="text" value="<?php echo $sheet['currentLife'] ?>"
+                style="width: 35px; background-color: #E60101; color: white; outline: none; font-weight: normal;" 
+                placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'currentLife', this.value, <?php echo $sheet['maxLife']; ?>);" 
+                onblur="this.value = FocusChanged(this.value, 'text');" /> 
+                    / 
+                <input type="text" value="<?php echo $sheet['maxLife'] ?>"
+                style="width: 35px; background-color: #E60101; color: white; outline: none; font-weight: normal;" 
+                placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'maxLife', this.value, 100);" 
+                onblur="this.value = FocusChanged(this.value, 'text');" /> 
             </dd>
 
-            <dt class="col-sm-4 h6">Sanidade</dt>
-            <dd class="col-sm-8">
-                <div class="progress" style="background-color: rgb(37, 37, 37);">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="9" style="width:100%">
-                    50/50
-                    </div>
-                </div>
+            <dt class="col-sm-4 h6" style="color: white; background-color: #1796E6; border-bottom: 2px solid black; border-top: 2px solid black;">Sanidade</dt>
+            <dd class="col-sm-8 text-center" style="border-right: 2px solid black; color: white; font-size: 18px; border-bottom: 2px solid black; border-top: 2px solid black; background-color: #1796E6">
+            <input type="text" value="<?php echo $sheet['currentSanity'] ?>"
+                style="width: 35px; background-color: #1796E6; color: white; outline: none; font-weight: normal;" 
+                placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'currentSanity', this.value, <?php echo $sheet['maxSanity']; ?>);" 
+                onblur="this.value = FocusChanged(this.value, 'text');" /> 
+                    / 
+                <input type="text" value="<?php echo $sheet['maxSanity'] ?>"
+                style="width: 35px; background-color: #1796E6; color: white; outline: none; font-weight: normal;" 
+                placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'maxSanity', this.value, 100);" 
+                onblur="this.value = FocusChanged(this.value, 'text');" /> 
             </dd>
-
+            <!--
             <dt class="col-sm-4 h6">Dominio</dt>
             <dd class="col-sm-8">
-                <div class="progress" style="background-color: rgb(37, 37, 37);">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="15" style="width:100%; background-color: purple;">
-                    15/15
-                    </div>
-                </div>
-            </dd>
+                <?php echo $sheet['currentDomain']; ?> / <?php echo $sheet['maxDomain']; ?>
+            </dd> -->
 
-            <dt></dt><dd></dd>
-            <dt></dt><dd></dd>
             <dt></dt><dd></dd>
             <dt></dt><dd></dd>
 
@@ -63,23 +76,48 @@
             <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Jogador</dt>
             <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;"><?php echo $sheet['player']; ?></dd>
 
-            <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Arquetipo</dt>
-            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">Investigador</dd>
+            <!-- <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Arquetipo</dt>
+            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;"><?php echo $sheet['archetype']; ?></dd> -->
             
-            <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Ocupação</dt>
-            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">Técnico Informatica</dd>
+            <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Profissão</dt>
+            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">    
+                <input type="text" value="<?php echo $sheet['occupation'] ?>" 
+                                        style="width: 500px; outline: none;" 
+                                        placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'occupation', this.value, 'text');" 
+                                        onblur="this.value = FocusChanged(this.value, 'text');" />
+            </dd>
             
             <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Idade</dt>
-            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">18</dd>
+            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">    
+                <input type="text" value="<?php echo $sheet['age'] ?>" 
+                                        style="width: 500px; outline: none;" 
+                                        placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'age', this.value, 200);" 
+                                        onblur="this.value = FocusChanged(this.value, 'text');" />
+            </dd>
 
             <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Genêro</dt>
-            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">Masculino</dd>
+            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">    
+                <input type="text" value="<?php echo $sheet['gender'] ?>" 
+                                        style="width: 500px; outline: none;" 
+                                        placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'gender', this.value, 'text');" 
+                                        onblur="this.value = FocusChanged(this.value, 'text');" />
+            </dd>
 
             <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">Residência</dt>
-            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">Casa</dd>
+            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">    
+                <input type="text" value="<?php echo $sheet['res'] ?>" 
+                                        style="width: 500px; outline: none;" 
+                                        placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'res', this.value, 'text');" 
+                                        onblur="this.value = FocusChanged(this.value, 'text');" />
+            </dd>
 
             <dt class="col-sm-4 h6" style="margin-bottom: 5px !important;">L. Nasc</dt>
-            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">Casa</dd>
+            <dd class="col-sm-8 h6" style="margin-bottom: 5px !important; font-weight: normal;">    
+                <input type="text" value="<?php echo $sheet['nasc'] ?>" 
+                                        style="width: 500px; outline: none;" 
+                                        placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'nasc', this.value, 'text');" 
+                                        onblur="this.value = FocusChanged(this.value, 'text');" />
+            </dd>
         
             <br>
 
@@ -88,63 +126,47 @@
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquise Pericia">
             
             <ul id="myUL">
-                <tbody>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Antropologia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Arqueologia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Arremesar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Arte</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Artes Marciais</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Astronomia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Barganha</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Biologia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Cavalgar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Chaveiro</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Computação</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Contabilidade</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Crédito</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Direito</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Dirigir</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Disfarce</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Eletrônica</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Encontrar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Engenharia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Escalar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Esconder</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Escutar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Esquiva</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Farmácia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Fisica</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Fotografia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Furtividade</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Geologia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">História</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">História Natural</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Lábia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Lingua Nativa</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Localizar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Medicina</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Nadar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Navegar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Ocultar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Outra Língua</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Persuadir</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Pesquisar</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Pistola</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Primeiros Socorros</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Psicanálise</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Psicologia</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Pulo</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Quimica</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Rastrear</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Reparo Elétrico</a></th></tr></li>
-                    <li><tr><input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"><td> 10 </td><th><a href="#">Submetralhadora</a></th></tr></li>
+                <tbody style="font-size: 16px;">
+                    <?php
+                        $sheetkeys = array_keys($sheet);
+                        $n = 0;
+
+                        foreach ($sheetkeys as $key) 
+                        {
+                            if (substr($key, 0, 4) == "char") 
+                            {
+                                $n += 1;
+                                if ($n > 10) 
+                                {
+                                    $name = substr($key, 4);
+                                    if ($name == "ArteMarciais") $name = "Artes Marciais";
+                                    if ($name == "PrimeirosSocorros") $name = "Prim. Socorros";
+                                    echo " 
+                                        <li>
+                                            <tr>
+                                                <input type='checkbox'/>
+                                                <td> 
+                                                    <input type='text' value=" . $sheet[$key] . " 
+                                                        style='width: 25px; outline: none; font-weight: bold;' 
+                                                        oninput='this.value = ValueChanged(" . $sheet['charactersId'] . ", \"" . $key . "\", this.value, \"20\");' 
+                                                        onblur='this.value = FocusChanged(this.value, \"char\");' />
+                                                </td>
+                                                <th>
+                                                    <button onclick='Roll(\"" . $key . " " . $sheet['charactersId'] . "\");'>" . $name ."</button>
+                                                </th>
+                                            </tr>
+                                        </li>";
+                                }
+                            }
+                        }
+                    ?>
                 </tbody>
             </ul>
         </d1>
         
     </div>
-    <div class="col-6">
-        <br><br>
+    <div class="col-8">
+        <br><br><br>
         <div class="row">
             <div class="col-4">
                 <table class="table">
@@ -157,8 +179,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charFor'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'FOR', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charFOR', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                         <tr>
@@ -168,8 +190,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charDex'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'DEX', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charDEX', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                         <tr>
@@ -179,8 +201,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charCon'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'CON', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charCON', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                     </tbody>
@@ -197,8 +219,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charTam'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'TAM', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charTAM', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                         <tr>
@@ -208,8 +230,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charPod'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'POD', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charPOD', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                         <tr>
@@ -219,8 +241,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charCar'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'CAR', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charCAR', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                     </tbody>
@@ -237,8 +259,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charInt'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'INT', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charINT', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                         <tr>
@@ -248,8 +270,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charEdu'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'EDU', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charEDU', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                         <tr>
@@ -259,8 +281,8 @@
                             <th>
                                 <input type="text" value="<?php echo $sheet['charSor'] ?>" 
                                        style="width: 25px; outline: none; font-weight: bold;" 
-                                       placeholder="0" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'SOR', this.value);" 
-                                       onblur="this.value = FocusChanged(this.value);" />
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charSOR', this.value, '20');" 
+                                       onblur="this.value = FocusChanged(this.value, 'char');" />
                             </th>
                         </tr>
                     </tbody>
@@ -272,8 +294,30 @@
                 <table class="table" style=" border: white;">
                     <tbody>
                         <tr><td></td><th scope="row"></th></tr>
-                        <tr><td><a href="#">Exposição Paranormal</a></td><th scope="row">50</th></tr>
-                        <tr><td>Armadura</td><th scope="row">0</th></tr>
+                        <tr>
+                            <td>
+                                <button onclick="Roll('Exp <?php echo $sheet['charactersId']?>');">Exposição Paranormal</button>
+                            </td>
+                            <th>
+                                <input type="text" value="<?php echo $sheet['paranormalExposure'] ?>" 
+                                       style="width: 35px; outline: none; font-weight: bold;" 
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'paranormalExposure', this.value, '100');" 
+                                       onblur="this.value = FocusChanged(this.value, 'null');" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                               <button style="color : black; background-color: white !important;" disabled> 
+                                    Armadura 
+                                </button>
+                            </td>
+                            <th>
+                                <input type="text" value="<?php echo $sheet['armor'] ?>" 
+                                       style="width: 35px; outline: none; font-weight: bold;" 
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'armor', this.value, '100');" 
+                                       onblur="this.value = FocusChanged(this.value, 'null');" />
+                            </th>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -281,8 +325,32 @@
                 <table class="table"  style=" border: white;">
                     <tbody>
                         <tr><td></td><th scope="row"></th></tr>
-                        <tr><td>Bonus de Dano</td><th scope="row">1d8</th></tr>
-                        <tr><td>Movimento</td><th scope="row">8</th></tr>
+                        <tr>
+                            <td>
+                               <button style="color : black; background-color: white !important;" disabled> 
+                                    Bonus de Dano 
+                                </button>
+                            </td>
+                            <th>
+                                <input type="text" value="<?php echo $sheet['baseDamage'] ?>" 
+                                       style="width: 35px; outline: none; font-weight: bold;" 
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'baseDamage', this.value, 'text');" 
+                                       onblur="this.value = FocusChanged(this.value, 'text');" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                               <button style="color : black; background-color: white !important;" disabled> 
+                                    Movimento
+                                </button>
+                            </td>
+                            <th>
+                                <input type="text" value="<?php echo $sheet['movement'] ?>" 
+                                       style="width: 35px; outline: none; font-weight: bold;" 
+                                       placeholder="" oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'movement', this.value, 12);" 
+                                       onblur="this.value = FocusChanged(this.value, 'text');" />
+                            </th>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -355,7 +423,7 @@
 
         <br>
 
-        <p>
+        <!--<p>
             <a data-bs-toggle="collapse" href="#rituais" role="button" aria-expanded="false" aria-controls="collapseExample" style="color: rgb(161, 0, 0); padding: 0; margin-left: 5px;">
                 <img src="imgs/ritual.png" width="20px">Rituais
             </a>
@@ -499,7 +567,7 @@
             </div>
         </div>
 
-        <br>
+        <br> -->
 
         <p>
             <a data-bs-toggle="collapse" href="#inventario" role="button" aria-expanded="false" aria-controls="collapseExample" style="color: rgb(161, 0, 0); padding: 0; margin-left: 5px;">
@@ -637,28 +705,35 @@
 
         <br>
         
-        <div>Descrição Pessoal</div>
-
-        <textarea class="form-control" rows="4" cols="50" style="width: 525px; resize: none;"></textarea>
-
+        <div style="margin-left: 10px;">Descrição Pessoal</div>
+            <textarea type="text" style="margin-left: 10px; border-color: lightgrey; background-color: rgb(235, 235, 235); width: 525px; height: 150px; resize: none;" 
+                placeholder="" onchange="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'personalDescription', this.value, 'text');" > <?php echo $sheet['personalDescription'] ?>
+            </textarea>
         <br>
 
-        <div>História</div>
+        <div style="margin-left: 10px;">História</div>
 
-        <textarea class="form-control" rows="4" cols="50" style="width: 525px; height: 325px; resize: none;"></textarea>
+        <textarea type="text" style="margin-left: 10px; border-color: lightgrey; background-color: rgb(235, 235, 235); width: 525px; height: 200px  ; resize: none;" 
+        placeholder="" onchange="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'story', this.value, 'text');" > <?php echo $sheet['story'] ?>
+        </textarea>
 
         <br>
         <div class="row">
             <div class="col-6">
-                <div>Pessoas Importantes</div>
+                <div style="margin-left: 10px;">Pessoas Importantes</div>
 
-                <textarea class="form-control" rows="4" cols="50" style="width: 225px; height: 240px; resize: none;"></textarea>
+                
+                <textarea type="text" style="margin-left: 10px; border-color: lightgrey; background-color: rgb(235, 235, 235); width: 225px; height: 200px; resize: none;" 
+                placeholder="" onchange="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'people', this.value, 'text');" > <?php echo $sheet['people'] ?>
+                </textarea>
 
                 <br>
 
-                <div>Fobias e Manias</div>
+                <div style="margin-left: 10px;">Fobias e Manias</div>
 
-                <textarea class="form-control" rows="4" cols="50" style="width: 240px; height: 240px; resize: none;"></textarea>
+                <textarea type="text" style="margin-left: 10px; border-color: lightgrey; background-color: rgb(235, 235, 235); width: 225px; height: 200px; resize: none;" 
+                placeholder="" onchange="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'fears', this.value, 'text');" > <?php echo $sheet['fears'] ?>
+                </textarea>
 
                 <br>
 
@@ -666,23 +741,22 @@
             <div class="col-6">
                 <div>Marcas e Cicatrizes</div>
 
-                <textarea class="form-control" rows="4" cols="50" style="width: 240px; height: 240px; resize: none;"></textarea>
+                <textarea type="text" style="margin-left: 10px; border-color: lightgrey; background-color: rgb(235, 235, 235); width: 225px; height: 200px; resize: none;" 
+                placeholder="" onchange="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'scars', this.value, 'text');" > <?php echo $sheet['scars'] ?>
+                </textarea>
 
                 <br>
 
                 <div>Ferimentos</div>
 
-                <textarea class="form-control" rows="4" cols="50" style="width: 240px; height: 240px; resize: none;"></textarea>
+                <textarea type="text" style="margin-left: 10px; border-color: lightgrey; background-color: rgb(235, 235, 235); width: 225px; height: 200px; resize: none;" 
+                placeholder="" onchange="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'wounds', this.value, 'text');" > <?php echo $sheet['wounds'] ?>
+                </textarea>
 
                 <br>
                 
             </div>
         </div>
-    </div>
-    <div class="col-3">
-        <?php
-            include_once 'includes/chat.inc.php';
-        ?>
     </div>
 </div>
 
