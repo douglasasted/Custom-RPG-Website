@@ -54,8 +54,8 @@
                 ?>
                 
                 <!-- Formulario -->
-                <h6>Nome de Usuario ou Email</h6>
-                <input type="text" size="28" name="name" placeholder="Nome de usuario ou email..."><br><br>
+                <h6>Nome de Usuario</h6>
+                <input type="text" size="28" name="name" placeholder="Nome de usuario..."><br><br>
                 <h6>Senha</h6>
                 <input type="password" size="28" name="pwd" placeholder="Senha..."><br><br>
                 

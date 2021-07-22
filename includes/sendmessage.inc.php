@@ -61,17 +61,32 @@ else
         require_once 'dbh.inc.php';
         require_once 'functions.inc.php';
 
+        $name = explode(' ', $sheet['name'])[0];
+
+        if ($sheet['player'] == 'monster') 
+        {
+            $name = "Monstro";
+        }
+        else if ($sheet['player'] == 'Douglas_Asted') 
+        {
+            $name = "Mestre";
+        }
+
         if ($roll[0] == "Exp") 
         {
-            $msg = 'EXP' . explode(' ', $sheet['name'])[0] . " : " . $posRolls[$roll[0]] . " " . RollExp($sheet["paranormalExposure"]) . ".";
+            $msg = 'EXP' . $name . " : " . $posRolls[$roll[0]] . " " . RollExp($sheet["paranormalExposure"]) . ".";
         }
         else if (isset($posRolls[$roll[0]])) 
         {
-            $msg = 'CHA' . explode(' ', $sheet['name'])[0] . " : " . $posRolls[$roll[0]] . " " . Roll($sheet["char" . $roll[0]]) . ".";
+            $msg = 'CHA' . $name . " : " . $posRolls[$roll[0]] . " " . Roll($sheet["char" . $roll[0]]) . ".";
+        }
+        else if ($roll[0] == 'expertise')
+        {
+            $msg = 'CHA' . $name . " : " . $roll[3] . " " . Roll($roll[2]) . ".";
         }
         else
         {
-            $msg = 'CHA' . explode(' ', $sheet['name'])[0] . " : " . substr($roll[0], 4) . " " . Roll($sheet[$roll[0]]) . ".";
+            $msg = 'CHA' . $name . " : " . substr($roll[0], 4) . " " . Roll($sheet[$roll[0]]) . ".";
         }
 
         $name = mysqli_real_escape_string($conn, $_SESSION['username']);

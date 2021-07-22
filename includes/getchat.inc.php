@@ -1,7 +1,7 @@
 <?php
 include_once("dbh.inc.php");
 
-$sql = "SELECT * FROM chat ORDER BY chatId DESC LIMIT 5;";   
+$sql = "SELECT * FROM chat ORDER BY chatId DESC LIMIT 50;";   
 $result = mysqli_query($conn, $sql);
 
 $rows = array();
@@ -11,8 +11,11 @@ while ($row = $result -> fetch_array())
     array_push($rows, $row);
 }
 
+$msg = "";
+
 for ($i = count($rows)-1; $i >= 0; $i--) 
 {
+    $msg = $msg . substr($rows[$i][2], 3) . '\n';
     $sub = substr($rows[$i][2], 0, 3);
     $msg = substr($rows[$i][2], 3);
     
@@ -31,36 +34,16 @@ for ($i = count($rows)-1; $i >= 0; $i--)
             $color = 'black';
     }
 
-    if ($i == 0) 
-    {
-        echo "
-            <div style='background-color: white; outline-style: solid; outline-width: 2px; outline-color: lightgrey''><hr><strong style='font-size: 15px;>
-                <hr>
-                <strong style='font-size: 15px'>", 
-                    $rows[$i][1], 
-                "</strong> 
-                <span class='small'>", 
-                    substr($rows[$i][3], 2, -3), 
-                "</span>
-                <p style ='margin-bottom: 0px; height: 40px; font-size: 14px; font-style: justify; color: ", $color,";'>",
-                    $msg,
-                "</p>
-                <br>
-            </div>
-        ";
-    }
-    else
-    {
-        echo "
-            <hr style='margin-bottom: 7px; margin-top: 8px;'>
-            <strong style='font-size: 14px'>", 
+    echo " 
+        <div>
+            <strong style='font-size: 12px'>", 
                 $rows[$i][1], 
             "</strong> 
             <span class='small'> ", 
                 substr($rows[$i][3], 2, -3), 
             "</span>
-            <p style ='margin-bottom: 0px; font-size: 14px; height: 40px; font-style: justify; color: ", $color,";'>",
+            <p style ='margin-bottom: 0px; font-size: 12px; height: 40px; font-style: justify; color: ", $color,";'>",
                 $msg,
-            "</p>";
-    }
+            "</p>
+        </div>";
 }

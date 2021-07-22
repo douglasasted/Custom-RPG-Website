@@ -47,10 +47,6 @@
                         {
                             echo "<p style='color:red;'>Seu nome de usuario usa caracteres invalidos.</p>";
                         }
-                        else if ($_GET["error"] == "invalidemail") 
-                        {
-                            echo "<p style='color:red;'>Seu email é invalido.</p>";
-                        }
                         else if ($_GET["error"] == "pwddontmatch") 
                         {
                             echo "<p style='color:red;'>Senhas não são idênticas.</p>";
@@ -69,8 +65,6 @@
                 <!-- Formulario -->
                 <h6>Nome de usuario</h6>
                 <input type="text" size="28" name="name" placeholder="Nome de usuario..."><br><br>
-                <h6>Endereço de Email</h6>
-                <input type="text" size="28" name="email" placeholder="Email..."><br><br>
                 <h6>Senha</h6>
                 <input type="password" size="28" name="pwd" placeholder="Senha..."><br><br>
                 <h6>Repita sua senha</h6>

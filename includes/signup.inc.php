@@ -4,7 +4,6 @@ if (isset($_POST["submit"]))
 {
     // Variaveis
     $name = $_POST["name"];
-    $email = $_POST["email"];
     $pwd = $_POST["pwd"];
     $pwdRepeat = $_POST["pwdrepeat"];
 
@@ -14,7 +13,7 @@ if (isset($_POST["submit"]))
 
     // Abaixo a procura por erros do usuario.
     // Alguma variavel está vazia?
-    if (empty($name) || empty($email) || empty($pwd) || empty($pwdRepeat)) 
+    if (empty($name) || empty($pwd) || empty($pwdRepeat)) 
     {
         header("location: ../signup.php?error=emptyinput");
         exit();
@@ -27,13 +26,6 @@ if (isset($_POST["submit"]))
         exit();
     }
 
-    // O email é invalido?
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-    {
-        header("location: ../signup.php?error=invalidemail");
-        exit();
-    }
-
     // A senha é invalida?
     if ($pwd !== $pwdRepeat) 
     {
@@ -42,14 +34,14 @@ if (isset($_POST["submit"]))
     }
 
     // Nome de usuario ou o email já existe?
-    if (nameExist($conn, $name, $email) !== false) 
+    if (nameExist($conn, $name) !== false) 
     {
         header("location: ../signup.php?error=nametaken");
         exit();
     }
 
     // Caso não houve nenhum erro, crie o usuario
-    createUser($conn, $name, $email, $pwd);
+    createUser($conn, $name, $pwd);
 }
 else
 {

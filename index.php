@@ -9,10 +9,20 @@
     $result = mysqli_query($conn, $sql);
 
     $n = 0;
+    $characters = array();
+    $monsters = array();
 
     while ($row = $result -> fetch_array()) 
     {
-        if ($row['player'] === $_SESSION['username'] || $_SESSION['username'] === "Douglas_Asted") 
+        if ($row['player'] == 'Douglas_Asted' && $_SESSION['username'] === "Douglas_Asted")
+        {
+            array_push($characters, $row);
+        }
+        else if ($row['player'] == 'monster' && $_SESSION['username'] === "Douglas_Asted")
+        {
+            array_push($monsters, $row);
+        }
+        else if ($row['player'] === $_SESSION['username'] || $_SESSION['username'] === "Douglas_Asted") 
         {
             if ($n == 0) 
             {
@@ -43,11 +53,105 @@
                         <div class='col-6'>
                         " . $row['currentSanity'] . " / " . $row['maxSanity'] . "
                         </div>
+                        <div class='col-6'>
+                            <strong> Dominio </strong> 
+                        </div>
+                        <div class='col-6'>
+                        " . $row['currentDomain'] . " / " . $row['maxDomain'] . "
+                        </div>
                     </div>
                 </div>
             ";
             $n += 1;
         }
+    }
+
+    if ($n !== 0) 
+    {
+        echo "</div>";
+    }
+
+    $n = 0;
+
+    foreach ($characters as $row) 
+    {
+        if ($n == 0) 
+        {
+            echo "
+            <br>
+            <div class='display-6 text-center' style='font-size: 25px;'>Fichas de NPC</div>
+            <div class='row'>";
+        }
+        echo "
+            <div class='col-3'>
+                <br>
+                <div class='text-center' style='margin-bottom: 0px;'>
+                    <a href='charactersheet.php?id=" . $row['charactersId'] ."'>("
+                        . $row['level'] . ") "
+                        . $row['name'] ."
+                    </a>
+                </div>
+                <div class='row'>
+                    <div class='col-6'>
+                        <strong> Vida </strong> 
+                    </div>
+                    <div class='col-6'>
+                        " . $row['currentLife'] . " / " . $row['maxLife'] . "
+                    </div> 
+                    <div class='col-6'>
+                        <strong> Sanidade </strong> 
+                    </div>
+                    <div class='col-6'>
+                    " . $row['currentSanity'] . " / " . $row['maxSanity'] . "
+                    </div>
+                    <div class='col-6'>
+                        <strong> Dominio </strong> 
+                    </div>
+                    <div class='col-6'>
+                    " . $row['currentDomain'] . " / " . $row['maxDomain'] . "
+                    </div>
+                </div>
+            </div>
+        ";
+        $n += 1;
+    }
+
+    if ($n !== 0) 
+    {
+        echo "</div>";
+    }
+    
+    $n = 0;
+
+    foreach ($monsters as $row) 
+    {
+        if ($n == 0) 
+        {
+            echo "
+            <br>
+            <div class='display-6 text-center' style='font-size: 25px;'>Fichas de Monstros</div>
+            <div class='row'>";
+        }
+        echo "
+            <div class='col-3'>
+                <br>
+                <div class='text-center' style='margin-bottom: 0px;'>
+                    <a href='charactersheet.php?id=" . $row['charactersId'] ."'>("
+                        . $row['level'] . ") "
+                        . $row['name'] ."
+                    </a>
+                </div>
+                <div class='row'>
+                    <div class='col-6'>
+                        <strong> Vida </strong> 
+                    </div>
+                    <div class='col-6'>
+                        " . $row['currentLife'] . " / " . $row['maxLife'] . "
+                    </div> 
+                </div>
+            </div>
+        ";
+        $n += 1;
     }
 
     if ($n !== 0) 

@@ -20,10 +20,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container" style=" background-color: white; 
-                                   border-style: outset; 
-                                   border-width:medium; 
-                                   border-color: grey;">
+    <br>
+    <div class="container-fluid" style="background-color: transparent">
         <div class="row">
             <div class="col-9">
                 <br>

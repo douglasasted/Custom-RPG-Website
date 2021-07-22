@@ -1,15 +1,29 @@
             </div>
             <div class="col-3"><br>
-                <div  style="-position: webkit-sticky; position: sticky; top: 28px; bottom: 4px; float: right;background-color: rgb(235, 235, 235); padding: 10px; border-style: solid; border-width: thin; border-color: grey; width: 275px;">
+                <div  style="
+                    -position: webkit-sticky; 
+                    position: sticky; 
+                    top: 28px; 
+                    bottom: 0; 
+                    float: right; 
+                    padding: 10px; 
+                    width: 100%; 
+                    height: 94vh">
                     <h1 class="h5 text-center">Chat</h1>
-                    <div onload="UpdateChat();" class="chat">
+                        <div id='chat' type='text' style='
+                        font-size: 15px;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                        padding: 5px;
+                        width: 100%; height: 80%' onload="UpdateChat(); scrollTop = scrollHeight;" class="chat">
 
-                    </div>
-                    <input id="message"></input>
-                    <button style="width: 60px" onclick="
-                        SendMessage(document.getElementById('message').value);
+                        </div>
+                        <input id="message" style="width: 100%; font-size: 15px; border-style: solid; border-color: black; color: black; height: 50px; background-color: transparent"></input>
+                        <button 
+                        style="width: 25%; border-style: solid; border-color: black; color: black; font-weight: bold; margin-left: 75%; margin-top: 5px; background: url('imgs/paper.png')" 
+                        onclick="SendMessage(document.getElementById('message').value);
                         document.getElementById('message').value = '';"> Roll</button>
-                    <script src="javascript/chat.js"></script>
+                        <script src="javascript/chat.js"></script>
                 </div>
                 <br>
             </div>

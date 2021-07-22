@@ -1,6 +1,6 @@
 function ValueChanged (_id, _valname, _val, _max) 
 {
-    if (_max !== 'text' && _max !== 'gun')
+    if (_max !== 'text' && _max !== 'gun' && _max !== 'inventory' && _max !== 'skill' && _max !== 'ritual' && _max !== 'expertise' && _max !== 'check')
     {
         console.log('text');
         _val = _val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -34,6 +34,10 @@ function ValueChanged (_id, _valname, _val, _max)
 
 function FocusChanged (_val, _valname)
 {
+    if (_valname == 'text') 
+    {
+        return _val;
+    }
     if (_val == '') 
     {
         _val = '0';

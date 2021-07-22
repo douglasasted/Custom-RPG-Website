@@ -1,9 +1,9 @@
 <?php
 
 // Funções de Criação de Conta
-function nameExist($conn, $name, $email)
+function nameExist($conn, $name)
 {
-    $sql = "SELECT * FROM users WHERE usersName = ? OR usersEmail = ?;";
+    $sql = "SELECT * FROM users WHERE usersName = ?;";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) 
@@ -12,7 +12,7 @@ function nameExist($conn, $name, $email)
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ss", $name, $email);
+    mysqli_stmt_bind_param($stmt, 's', $name);
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
@@ -30,9 +30,9 @@ function nameExist($conn, $name, $email)
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $name, $email, $pwd)
+function createUser($conn, $name, $pwd)
 {
-    $sql = "INSERT INTO users(usersName, usersEmail, usersPwd) VALUES(?, ?, ?);";
+    $sql = "INSERT INTO users(usersName, usersPwd) VALUES(?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) 
@@ -43,7 +43,7 @@ function createUser($conn, $name, $email, $pwd)
 
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sss", $name, $email, $hashedPwd);
+    mysqli_stmt_bind_param($stmt, "ss", $name, $hashedPwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -54,7 +54,7 @@ function createUser($conn, $name, $email, $pwd)
 // Funções de Login
 function loginUser($conn, $name, $pwd) 
 {
-    $nameExist = nameExist($conn, $name, $name);
+    $nameExist = nameExist($conn, $name);
 
     if ($nameExist === false) 
     {
@@ -112,7 +112,14 @@ function Roll($value)
         $quality = "Normal";
     }
 
-    return $rng . " (". $value . ") " . $quality;
+    $val = " (". $value . ") ";
+
+    if ($_SESSION["username"] == "Douglas_Asted") 
+    {
+        $val = " ";
+    }
+
+    return $rng . $val . $quality;
 }
 
 function RollExp($value) 

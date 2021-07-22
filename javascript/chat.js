@@ -1,4 +1,5 @@
 const chatMessages = document.querySelector(".chat");
+var scrolled = false;
 
 window.onload = function() {    
     UpdateChat();
@@ -44,7 +45,13 @@ function UpdateChat()
         }
     }
     xhr.send();
+    if(!scrolled)
+        chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+$("#chat").on('scroll', function(){
+    scrolled=true;
+});
 
 function SendMessage(_message) 
 {

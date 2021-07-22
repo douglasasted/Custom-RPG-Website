@@ -10,10 +10,15 @@ if($id !== null)
 {
     include_once('dbh.inc.php');
 
-    date_default_timezone_set('America/Sao_Paulo');
-    $date = date('d-m-y h:i:sa');
-
-    if ($type == "inventory") 
+    if ($type == "skill") 
+    {
+        $sql = "INSERT INTO skills (charactersId) VALUES ('$data->id');";
+    }
+    else if ($type == "ritual") 
+    {
+        $sql = "INSERT INTO rituals (charactersId) VALUES ('$data->id');";
+    }
+    else if ($type == "inventory") 
     {
         $sql = "INSERT INTO inventory (charactersId) VALUES ('$data->id');";
     }
@@ -28,10 +33,6 @@ if($id !== null)
     } 
     else
     {
-        echo "Erro: Mensagem não enviada!";
+        echo "Erro: Objeto não inserido!";
     }
-}
-else 
-{
-    header("location: ../login.php");
 }
