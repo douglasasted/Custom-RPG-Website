@@ -12,6 +12,10 @@
 :root 
 {
     --main-color:#9900ff;
+<<<<<<< Updated upstream
+=======
+    --sub-color:#570091;
+>>>>>>> Stashed changes
     --grey-color: #858585;
     --white-color: #ffffff;
 }
@@ -67,7 +71,11 @@ textarea
     padding: 5px;
     font-size: 14px; 
     background-color: transparent; 
+<<<<<<< Updated upstream
     width: 95%; 
+=======
+    width: 100%; 
+>>>>>>> Stashed changes
     resize: none;
     color: white;
 }
@@ -133,7 +141,10 @@ textarea
 {
     font-size: 15px; 
     font-weight: bold; 
+<<<<<<< Updated upstream
     margin-right: 30px;
+=======
+>>>>>>> Stashed changes
 }
 
 #smallinput {
@@ -189,8 +200,13 @@ textarea
 }
 
 #special:hover {
+<<<<<<< Updated upstream
     color: black !important;
     background-color: red;
+=======
+    color: white !important;
+    background-color: cyan;
+>>>>>>> Stashed changes
 }
 
 .center 

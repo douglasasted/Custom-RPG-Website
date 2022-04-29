@@ -119,7 +119,11 @@
     {
         global $sheet;
         Echo '    
+<<<<<<< Updated upstream
             <th style="width: 200px; background-color: transparent">
+=======
+            <th style="width: 200px;">
+>>>>>>> Stashed changes
                 <input onclick="Roll(\'charactersChar' . $name . ' ' . $sheet['charactersId'] . '\');" type=\'image\' src=\'imgs/dice.png\' width=\'15\' height=\'15\'/>
                 
                 <input type="text" value="' . $sheet['charactersChar' . $name] . '" 
@@ -258,11 +262,16 @@
             </d1>
             
         </div>
+<<<<<<< Updated upstream
         <div class="col-8" style="margin: 0px; background-color: transparent">
+=======
+        <div class="col-9" style="margin: 0px;">
+>>>>>>> Stashed changes
             <br><br>
             
             <!-- Characteristic Values -->
             <!-- #region -->
+<<<<<<< Updated upstream
                 <div class="text-center" style="font-size: 15px; font-weight: bold; margin-right: 15px">Caracteristicas</div>
                 <div class="row center" style="width:550px; background-color: transparent">
                     <div class="col-4">
@@ -293,6 +302,32 @@
                                 <tr> <?php EchoCharacteristic("Education", "Educação"); ?> </tr>
                                 <tr> <!-- Sorte --> </tr>
                             </tbody>
+=======
+                <div class="text-center" style="font-size: 15px; font-weight: bold;">Caracteristicas</div>
+                <div class="row center" style="width:550px;">
+                    <div class="col-4" style="margin-right: 0px">
+                        <table class="table"  style="margin-right: 0px; border-color: transparent">
+                            <tr><td></td><th scope="row"></th></tr>
+                            <tr> <?php EchoCharacteristic("Strength", "Força"); ?> </tr>
+                            <tr> <?php EchoCharacteristic("Dexterity", "Destreza"); ?> </tr>
+                            <tr> <?php EchoCharacteristic("Intelligence", "Inteligência"); ?> </tr>
+                        </table>
+                    </div>
+                    <div class="col-4"  style="margin-left: 0px;">
+                        <table class="table" style=" border-color: transparent">
+                            <tr><td></td><th scope="row"></th></tr>
+                            <tr> <?php EchoCharacteristic("Constitution", "Constituição"); ?> </tr>
+                            <tr> <?php EchoCharacteristic("Appearance", "Aparência"); ?> </tr>
+                            <tr> <?php EchoCharacteristic("Power", "Poder"); ?> </tr>
+                        </table>
+                    </div>
+                    <div class="col-4">
+                        <table class="table" style=" border-color: transparent">
+                            <tr><td></td><th scope="row"></th></tr>
+                            <tr> <?php EchoCharacteristic("Size", "Tamanho"); ?> </tr>
+                            <tr> <?php EchoCharacteristic("Education", "Educação"); ?> </tr>
+                            <tr> <!-- Sorte --> </tr>
+>>>>>>> Stashed changes
                         </table>
                     </div>
                 </div>
@@ -513,11 +548,16 @@
             <!-- #endregion -->
 
             <!--#Region Inventory -->
+<<<<<<< Updated upstream
                 <p align=center style="margin-right: 30px">
+=======
+                <p align=center>
+>>>>>>> Stashed changes
                     <a data-bs-toggle="collapse" href="#inventario" role="button" aria-expanded="false" aria-controls="collapseExample" style="padding: 0; margin-left: 5px;">
                         <spam style="font-weight: bold;"> Inventário </spam>
                     </a>
                 </p>
+<<<<<<< Updated upstream
                 <div class="collapse" id="inventario" style="margin-top: -15px; margin-right: 30px">
                     <div style='background-color: transparent; border: solid var(--main-color); border-width: thin;'>
                         <div style="margin-left: 10px; margin-right: 5%">
@@ -563,6 +603,67 @@
                                 if ($_SESSION['username'] == "douglas_asted")
                                     Echo '<a href="#" style=\'width: 100px\' onclick="NewItem(' . $sheet['charactersId'] . ', \'inventory\'); window.location.reload();">Adicionar Novo Slot</a>';
                             ?>
+=======
+                <div class="collapse" id="inventario" style="margin-top: -15px;">
+                    <div style='background-color: transparent; border: solid var(--grey-color); border-width: thin;'>
+                        <br>
+                        <div style="margin-right: 5%">
+                            <div class="col-4" style="margin-left: 18%; width: 75%">
+                                <div class="row">
+                                    <div class="col-6 text-center">
+                                        <spam style="font-size: 13px;"> Dinheiro $ </spam>
+                                        <input type="text" value="<?php echo $sheet['charactersMoney'] ?>" 
+                                            style="width: 100px; outline: none; background-color: transparent; color: white" 
+                                            oninput="this.value = ValueChanged(<?php echo $sheet['charactersId']?>, 'charactersMoney', this.value, 999999.99);" 
+                                            onblur="this.value = FocusChanged(this.value, 'text');" />
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <spam style="font-size: 13px;"> --------------- </spam>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <table class="table text-center" style="font-size: 13px; color: white; width: 105.5%">
+                                <tr>
+                                    <th style="text-center; border-color: var(--grey-color); width: 25%;" scope="col">Item</th>
+                                    <th style="text-center; border-color: var(--grey-color); width: 60%;" scope="col">Descrição</th>
+                                    <th style="text-center; border-color: var(--grey-color);" scope="col">Espaços</th>
+                                </tr>
+                                <?php
+                                    $sql = "SELECT * FROM items WHERE charactersId = ". $_GET['id'];
+                                    $itens = $conn->query($sql);
+
+                                    while ($item = $itens -> fetch_array()) 
+                                    {
+                                        echo "
+                                            <tr style='border-color: transparent'>
+                                                <td style='width: 20%'>
+                                                    <textarea maxlength='22' contenteditable='true' autocomplete='off' spellcheck='true' 
+                                                    class='text-center' type='text' style=' border-bottom: solid; border-top: none; border-left: none; border-right: none; border-width: thin; border-color: var(--grey-color); height: 30px; resize: none; font-size: 12px; overflow-y: hidden;' 
+                                                    onchange='this.value = ValueChanged(". $item['itemsId'] . ", \"itemsName\", this.value, \"inventory\");' >".  $item['itemsName'] . "</textarea>
+                                                </td>
+                                                <td style='width: 60%;'>
+                                                    <textarea maxlength='59' contenteditable='true' autocomplete='off' spellcheck='true'  
+                                                    class='text-center' type='text' style=' border-bottom: solid; border-top: none; border-left: none; border-right: none; border-width: thin; border-color: var(--grey-color); height: 30px; resize: none; font-size: 12px; overflow-y: hidden;' 
+                                                    onchange='this.value = ValueChanged(". $item['itemsId']. ", \"itemsDescription\", this.value, \"inventory\");' >". $item['itemsDescription'] . "</textarea>
+                                                </td>
+                                                <td>
+                                                    <textarea maxlength='2' contenteditable='true' autocomplete='off' spellcheck='true'  
+                                                    class='text-center' style='border-bottom: solid; border-top: none; border-left: none; border-right: none; border-width: thin; border-color: var(--grey-color); height: 30px; resize: none; font-size: 15px; overflow-y: hidden;' 
+                                                    onchange='this.value = ValueChanged(". $item['itemsId']. ", \"itemsSpace\", this.value, \"inventory\");' >". $item['itemsSpace'] . "</textarea>
+                                                </td>
+                                            </tr>";
+                                    }
+                                    ?>
+                            </table>
+                            <div align=center>
+                            <?php
+                                if ($_SESSION['username'] == "douglas_asted")
+                                    Echo '<a href="#" style=\'width: 100px; color: white; font-size: 13px;\' onclick="NewItem(' . $sheet['charactersId'] . ', \'inventory\'); window.location.reload();">Adicionar Novo Slot</a>';
+                            ?>
+                            </div>
+                            <br>
+>>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>

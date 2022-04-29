@@ -24,7 +24,7 @@ if($data !== null)
     }
     else if ($max == "inventory") 
     {
-        $sql = "UPDATE inventory SET " . $valname . " = '" . $value . "' WHERE inventoryId = ". $id;
+        $sql = "UPDATE items SET " . $valname . " = '" . $value . "' WHERE itemsId = ". $id;
     }
     else if ($max == "skill") 
     {
