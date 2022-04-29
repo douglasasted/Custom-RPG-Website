@@ -36,16 +36,16 @@ if($data !== null)
     }
     else if ($max == "expertise") 
     {
-        $sql = "UPDATE expertises SET expertiseName = '" . $value . "' WHERE expertisesId = ". $id;
+        $sql = "UPDATE expertises SET expertisesName = '" . $value . "' WHERE expertisesId = ". $id;
     }
     else if ($max == "charExpertise") 
     {
-        $sql = "UPDATE expertises SET expertiseValue = " . $value . " WHERE expertisesId = ". $id;
+        $sql = "UPDATE expertises SET expertisesValue = " . $value . " WHERE expertisesId = ". $id;
     }
     else if ($max == "check") 
     {
         if ($value == false) $value = 0;
-        $sql = "UPDATE expertises SET expertiseCheck = " . $value . " WHERE expertisesId = ". $id;
+        $sql = "UPDATE expertises SET expertisesCheck = " . $value . " WHERE expertisesId = ". $id;
     }
     else
     {

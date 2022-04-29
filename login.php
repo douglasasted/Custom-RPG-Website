@@ -20,7 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="color: black">
     
     <br><br><br><br><br>
 
@@ -55,9 +55,9 @@
                 
                 <!-- Formulario -->
                 <h6>Nome de Usuario</h6>
-                <input type="text" size="28" name="name" placeholder="Nome de usuario..."><br><br>
+                <input style="border: solid black; border-width: thin" type="text" size="28" name="name" placeholder="Nome de usuario..."><br><br>
                 <h6>Senha</h6>
-                <input type="password" size="28" name="pwd" placeholder="Senha..."><br><br>
+                <input style="border: solid black; border-width: thin" type="password" size="28" name="pwd" placeholder="Senha..."><br><br>
                 
                 <!-- Botão de Envio -->
                 <h6><button type="submit" name="submit">Entrar</button></h6><br>

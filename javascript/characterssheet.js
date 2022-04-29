@@ -69,3 +69,55 @@ function NewItem (_id, _type)
         type : _type
     }));
 }
+
+function deleteCharacter (_id) 
+{
+    console.log(_id);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "includes/dropcharacter.inc.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() 
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            // Response
+            console.log(this.responseText);
+        }
+    };
+    xhr.send(JSON.stringify({
+        id : _id
+    }));
+    document.location.href = "index.php";
+}
+
+function duplicateCharacter (_id) 
+{
+    console.log(_id);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "includes/duplicatecharacter.inc.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() 
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            // Response
+            console.log(this.responseText);
+        }
+    };
+    xhr.send(JSON.stringify({
+        id : _id
+    }));
+    document.location.href = "index.php";
+}
+
+function openSheet(sheet) {
+  var i;
+  var x = document.getElementsByClassName("sheet");
+  
+  for (i = 0; i < x.length; i++) 
+  {
+    x[i].style.display = "none";
+  }
+  
+  document.getElementById(sheet).style.display = "block";
+}

@@ -23,15 +23,17 @@ for ($i = count($rows)-1; $i >= 0; $i--)
     preg_match_all('!\d+!', $rows[$i][2], $numbers);
 
     if ($sub === "EXP")
-        $color = 'black';
+        $color = 'white';
+    else if ($sub === "MSG")
+        $color = 'var(--grey-color)';
     else
     {
-        if ($numbers[0][0] === '20') 
-            $color = 'green';
-        else if ($numbers[0][0] === '1') 
+        if ($numbers[0][0] === '100') 
             $color = 'rgb(161, 0, 0)';
+        else if ($numbers[0][0] === '1') 
+            $color = 'green';
         else
-            $color = 'black';
+            $color = 'white';
     }
 
     echo " 
@@ -39,10 +41,13 @@ for ($i = count($rows)-1; $i >= 0; $i--)
             <strong style='font-size: 12px'>", 
                 $rows[$i][1], 
             "</strong> 
-            <span class='small'> ", 
-                substr($rows[$i][3], 2, -3), 
-            "</span>
-            <p style ='margin-bottom: 0px; font-size: 12px; height: 40px; font-style: justify; color: ", $color,";'>",
+            <p style ='
+                height: fit-content;
+                margin-bottom: 0px; 
+                font-size: 12px; 
+                overflow-wrap: break-word;
+                font-style: justify; 
+                color: ", $color,";'>",
                 $msg,
             "</p>
         </div>";

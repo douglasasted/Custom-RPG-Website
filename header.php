@@ -21,18 +21,16 @@
 </head>
 <body>
     <br>
-    <div class="container-fluid" style="background-color: transparent">
-        <div class="row">
-            <div class="col-9">
-                <br>
-                <?php
-                    if ($_SESSION["username"] == "Douglas_Asted") 
-                    {
-                        echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], " (GM)</a> ></div>";
-                    }
-                    else 
-                    {
-                        echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], "</a> ></div>";
-                    }
-                ?>
-                <div class="text-center">( <a href="includes/logout.inc.php" style="color: rgb(0, 0, 161);"> Deslogar </a> )</div>
+    <div class="container" style="background-color: transparent; width: 70%">
+        <br>
+        <?php
+            if ($_SESSION["username"] == "Douglas_Asted") 
+            {
+                echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], " (GM)</a> ></div>";
+            }
+            else 
+            {
+                echo "<div class='text-center'>< Logado como <a href='index.php'>", $_SESSION["username"], "</a> ></div>";
+            }
+        ?>
+        <div class="text-center">( <a href="includes/logout.inc.php"> Deslogar </a> )</div>

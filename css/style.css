@@ -1,54 +1,96 @@
-body { 
-    background-color: black;
+@font-face 
+{
+    font-family: roboto-light;
+    src: url("fonts/Roboto-Light.ttf");
 }
 
-a {
-    color: rgb(161, 0, 0) !important;
+.margin {
+    display: inline-block;
+    position: relative;
+}
+
+:root 
+{
+    --main-color:#9900ff;
+    --grey-color: #858585;
+    --white-color: #ffffff;
+}
+
+/*#region HTML Objects CSS*/
+body 
+{ 
+    background-color: #000000;
+    color: var(--white-color);
+    font-family: roboto-light;
+}
+
+a 
+{
+    color: var(--main-color);
     text-decoration: none;
 }
 
-input {
+input 
+{
     outline-style: none;
     border-style: none;
 }
 
-a:hover:not(.header) {
-    color: rgb(161, 0, 0);
-    background-color: lightgrey;
+a:hover:not(.header) 
+{
+    color: white !important;
+    background-color: black;
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }
 
-button {
+button 
+{
     border-style: none;
-    background-color: white;
-    color: rgb(161, 0, 0);
+    background-color: var(--white-color);
+    color: var(--main-color);
     text-decoration: none;
 }
 
-button:hover {
+button:hover 
+{
+    color: black;
     background-color: lightgrey;
 }
 
-/* Title design css */
-.life-shadow {
-    background: url('../imgs/life.png') no-repeat center;
-    background-size: cover;
+textarea 
+{
+    border-style: solid; 
+    border-width: 2px; 
+    margin-top: 5px; 
+    border-color: var(--grey-color); 
+    padding: 5px;
+    font-size: 14px; 
+    background-color: transparent; 
+    width: 95%; 
+    resize: none;
+    color: white;
+}
+/*#endregion*/
+
+/*#region Classes CSS*/
+#health-title {
+    color: white;
+    border-bottom: 1px solid rgb(214, 13, 13);
+    padding-bottom: 5px;
 }
 
-.sanity-shadow {
-    background: url('../imgs/sanity.png') no-repeat center;
-    background-size: cover;
-}
-
-.domain-shadow {
-    background: url('../imgs/domain.png') no-repeat center;
-    background-size: cover;
+#sanity-title {
+    color: white;
+    border-bottom: 1px solid rgb(75, 17, 212);
+    padding-bottom: 5px;
 }
 
 #stats-title {
-    color: white; 
-    border-bottom: 2px solid white; 
-    border-top: 2px solid white;
-    border-left: 2px solid white;
+    color: var(--white-color); 
+    border-bottom: 2px solid black; 
+    border-top: 2px solid black;
+    border-left: 2px solid black;
     width: 90px;
     height: 30px;
     position: absolute; 
@@ -57,39 +99,48 @@ button:hover {
 #stats-text {
     width: 35px; 
     background-color: transparent; 
-    color: white; 
+    color: var(--white-color); 
     outline: none;
     font-weight: normal;
 }
 
 #stats-container {
-    border-right: 2px solid white; 
-    color: white; 
+    border-right: 2px solid black; 
+    color: var(--white-color); 
     font-size: 18px;
-    border-bottom: 2px solid white; 
-    border-top: 2px solid white; 
-    border-right: 2px solid white;
-    width: 90px;
+    border-bottom: 2px solid black; 
+    border-top: 2px solid black; 
+    border-right: 2px solid black;
+    width: 300px;
     height: 30px;
-    left: 100px;
-    position: absolute;
+    left: 100px;    
 }
 
-/* Normal design css */
 #normaltitle {
     background-color: transparent;
-    width: 105% !important; 
-    height: 60px;  
-    color: white;
+    color: var(--white-color);
+    width: 90% !important; 
+    
+    height: 40px;  
     font-size: 25px;
     font-weight: semi-bold;
+
+    display: inline-block;
+    text-align: center;
+}
+
+#text-area-title 
+{
+    font-size: 15px; 
+    font-weight: bold; 
+    margin-right: 30px;
 }
 
 #smallinput {
     width: 25px; 
     height: 25px; 
     outline: none; 
-    color: white;
+    color: var(--white-color);
     font-weight: normal;
 }
 
@@ -97,7 +148,7 @@ button:hover {
     width: 200px;
     margin-left: 10px;
     font-size: 16px;
-    color: white;
+    color: var(--white-color);
     padding: 4px 20px 4px 20px;
     border: 1px solid #ddd;
     margin-bottom: 2px;
@@ -107,7 +158,7 @@ button:hover {
     background-color: transparent;
     list-style-type: none;
     padding: 0;
-    color: white;
+    color: var(--white-color);
     margin: 0;
 }
 
@@ -115,23 +166,41 @@ button:hover {
     width: 200px;
     margin-left: 5px;
     margin-top: -1px;
-    background-color: white;
+    background-color: var(--white-color);
     padding: 8px;
     text-decoration: none;
     font-size: 16px !important;
-    color: white;
+    color: var(--white-color);
     display: block; 
 }
 
 #myUL li a {
-    color: rgb(161, 0, 0);
+    color: black;
     text-decoration: none;
 }
 
 #myUL li a:hover:not(.header) {
+    color: black !important;
     background-color: lightgrey;
 }
 
+#special {
+    color: red !important;
+}
+
+#special:hover {
+    color: black !important;
+    background-color: red;
+}
+
+.center 
+{
+  margin-left: auto;
+  margin-right: auto;
+}
+/*#endregion*/
+
+/*#region Other CSS*/
 /* TEST */
 .center-piece {
     background-color: green;
@@ -143,7 +212,7 @@ button:hover {
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
+    color: var(--white-color);
     opacity: 1; /* Firefox */
 }
 
@@ -165,5 +234,6 @@ button:hover {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(0, 0, 0); 
+    background: rgb(255, 255, 255); 
 }
+/*#endregion*/

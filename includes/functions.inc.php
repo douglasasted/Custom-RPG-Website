@@ -85,39 +85,31 @@ function loginUser($conn, $name, $pwd)
 function Roll($value) 
 {
     $quality = "Fracassso";
-    $rng = random_int(1, 20);
+    $rng = random_int(1, 100);
 
-    if ($rng == 1) 
+    if ($rng == 100) 
     {   
-        if ($value < 20) 
-        {
+        if ($value == 100) 
+            $quality = "Fracasso";
+        else
             $quality = "Desastre";
-        }
     }
-    else if ($rng > 20 - floor($value / 4))
+    else if ($rng <= floor($value / 5))
     {
         $quality = "Extremo";
 
-        if ($rng == 20) 
-        {
+        if ($rng == 1) 
             $quality = "Milagre";
-        }
     }
-    else if ($rng > 20 - floor($value / 2)) 
-    {
+    else if ($rng <= floor($value / 2)) 
         $quality = "Bom";
-    }
-    else if ($rng >= 20 - $value) 
-    {
+    else if ($rng <= $value) 
         $quality = "Normal";
-    }
 
     $val = " (". $value . ") ";
 
     if ($_SESSION["username"] == "Douglas_Asted") 
-    {
         $val = " ";
-    }
 
     return $rng . $val . $quality;
 }
@@ -128,9 +120,7 @@ function RollExp($value)
     $rng = random_int(1, 100);
 
     if ($rng <= $value) 
-    {
         $quality = "Sucesso";
-    }
 
     return $rng . " (". $value . ") " . $quality;
 }
@@ -158,30 +148,32 @@ function RollGen($value)
             }
         }
         else if ($val == '+') 
-        {
             $lastchar = '+';
-        }
         else if ($val == '-')
-        {
             $lastchar = '-';
-        }
         else 
         {
             $roll = explode('d', $val);
-            $rollmsg = "";
-            $totalroll = 0;
-            
-            for ($i=0; $i < $roll[0]; $i++) 
-            {
-                $rng = random_int(1, $roll[1]);
-                $rollmsg = $rollmsg . " + " . $rng;
-                $totalroll += $rng;
-            }
 
-            $msg = $msg . " + " . $totalroll . " (  " . substr($rollmsg, 2) . " )";
-            $total += $totalroll;
+            if ($roll[0] > 100 || $roll[1] > 100)
+                $msg = $msg . " + null";
+            else
+            {
+                $rollmsg = "";
+                $totalroll = 0;
+                
+                for ($i=0; $i < $roll[0]; $i++) 
+                {
+                    $rng = random_int(1, $roll[1]);
+                    $rollmsg = $rollmsg . ", " . $rng;
+                    $totalroll += $rng;
+                }
+
+                $msg = $msg . " + " . $totalroll . " ( <spam style='color: var(--grey-color); font-size: 11px'>" . substr($rollmsg, 2) . "</spam> ) " . $val;
+                $total += $totalroll;
+            }
         }
     }
 
-    return $total . ' = ' . substr($msg, 2);
+    return $total . ' ⟵ ' . substr($msg, 2);
 }
